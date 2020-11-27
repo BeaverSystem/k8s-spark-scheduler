@@ -61,6 +61,9 @@ var (
 				Storage: true,
 			}},
 			Scope: v1beta1.NamespaceScoped,
+			Subresources: &v1beta1.CustomResourceSubresources{
+				Status: &v1beta1.CustomResourceSubresourceStatus{},
+			},
 			Names: v1beta1.CustomResourceDefinitionNames{
 				Plural:     pluralName,
 				Singular:   "demand",
@@ -104,8 +107,9 @@ var (
 									Enum: getAllowedDemandPhasesEnum(),
 								},
 								"last-transition-time": {
-									Type:   "string",
-									Format: "date-time",
+									Type:     "string",
+									Format:   "date-time",
+									Nullable: true,
 								},
 							},
 						},
